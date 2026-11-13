@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Workshop Wall participant",
+  "type": "object",
+  "required": ["name", "github", "department"],
+  "properties": {
+    "name": { "type": "string", "minLength": 1 },
+    "github": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9](?:[A-Za-z0-9-]{0,38})$",
+      "description": "GitHub username, letters/numbers/hyphens"
+    },
+    "id": { "type": ["string", "number"] },
+    "semester": { "type": ["string", "number"] },
+    "department": { "type": "string", "minLength": 1 },
+    "skills": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "maxItems": 12
+    }
+  },
+  "additionalProperties": true
+}

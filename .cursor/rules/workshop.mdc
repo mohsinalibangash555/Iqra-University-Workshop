@@ -1,0 +1,15 @@
+---
+description: Iqra Workshop Wall — how contributions work
+alwaysApply: true
+---
+
+- This repo is a Next.js (static export) site that renders one card per
+  workshop participant.
+- Participants live in `participants/<cohort>/<github-username>.md`. Each file
+  has YAML frontmatter: `name`, `github`, `id`, `semester`, `department`,
+  `skills` (a list), followed by an optional one-line bio.
+- The current cohort folder is `participants/2026-nov/`.
+- ONE new file per person. Never edit someone else's file — separate files are
+  what keep contributions conflict-free (no merge conflicts).
+- After adding or changing a participant file, run `npm run validate`.
+- Keep guidance beginner-friendly; many contributors are opening their first PR.
