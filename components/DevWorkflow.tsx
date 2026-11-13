@@ -155,6 +155,28 @@ export default function DevWorkflow() {
           changes requested
         </text>
       </svg>
+      <ol className="flow-list">
+        {BRANCH.map((step) => (
+          <li key={step.lines[0]}>
+            <strong>{step.lines[0]}</strong>
+            <span>{step.lines.slice(1).join(" · ")}</span>
+          </li>
+        ))}
+        {[4, 3, 2, 1, 0].map((index) => {
+          const step = RELEASE[index];
+          const note =
+            index === 3
+              ? "Changes requested go back to step 4. Approved continues."
+              : null;
+          return (
+            <li key={step.lines[0]} className={step.marked ? "flow-step-final" : undefined}>
+              <strong>{step.lines[0]}</strong>
+              <span>{step.lines.slice(1).join(" · ")}</span>
+              {note && <span>{note}</span>}
+            </li>
+          );
+        })}
+      </ol>
     </div>
   );
 }

@@ -90,10 +90,10 @@ export default function Home() {
               <tbody>
                 {participants.map((person) => (
                   <tr key={`${person.cohort}/${person.username}`}>
-                    <td>{person.name || person.username}</td>
-                    <td>{person.department || "—"}</td>
-                    <td>{semesterLabel(person.semester) || "—"}</td>
-                    <td>
+                    <td data-label="Name">{person.name || person.username}</td>
+                    <td data-label="Department">{person.department || "—"}</td>
+                    <td data-label="Semester">{semesterLabel(person.semester) || "—"}</td>
+                    <td data-label="GitHub">
                       <a
                         href={`https://github.com/${encodeURIComponent(person.username)}`}
                         target="_blank"

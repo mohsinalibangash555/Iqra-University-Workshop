@@ -15,6 +15,11 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   }, [pathname]);
 
   useEffect(() => {
+    document.documentElement.classList.toggle("nav-open", open);
+    return () => document.documentElement.classList.remove("nav-open");
+  }, [open]);
+
+  useEffect(() => {
     function onKey(event: KeyboardEvent) {
       if (event.key === "Escape") setOpen(false);
     }

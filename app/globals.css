@@ -721,8 +721,8 @@ a.nav-cta:hover { background: #fff; }
 }
 @media (max-width: 640px) {
   .wrap {
-    width: 100vw;
-    max-width: 100vw;
+    width: 100%;
+    max-width: 100%;
     margin-inline: 0;
     padding-left: 16px;
     padding-right: 16px;
@@ -1013,6 +1013,8 @@ a.nav-cta:hover { background: #fff; }
 .diagram-scroll {
   overflow-x: auto;
   position: relative;
+  max-width: 100%;
+  min-width: 0;
   margin-top: 14px;
   background: var(--card);
   border: 1px solid var(--line);
@@ -1033,6 +1035,24 @@ a.nav-cta:hover { background: #fff; }
   height: auto;
   font-family: var(--font-body), sans-serif;
 }
+.flow-list {
+  display: none;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 10px;
+}
+.flow-list li {
+  display: grid;
+  gap: 2px;
+  background: var(--card);
+  border: 1px solid var(--navy);
+  border-radius: 12px;
+  padding: 12px 14px;
+}
+.flow-list strong { font-size: 0.95rem; }
+.flow-list span { color: var(--ink-soft); font-size: 0.88rem; }
+.flow-step-final { background: var(--mist); }
 
 @media (max-width: 900px) {
   .app { grid-template-columns: 1fr; }
@@ -1046,6 +1066,74 @@ a.nav-cta:hover { background: #fff; }
   }
   .nav-open .sidebar { transform: none; }
   .nav-open .scrim { display: block; }
-  .metrics, .jump-list { grid-template-columns: 1fr; }
+  html.nav-open, html.nav-open body { overflow: hidden; }
+  .metrics { grid-template-columns: 1fr 1fr; }
+  .jump-list { grid-template-columns: 1fr; }
   .app-content { width: min(1040px, calc(100% - 32px)); }
+  .toolbar, .grid { grid-template-columns: minmax(0, 1fr); }
+  .sidebar { height: 100vh; height: 100dvh; }
+  .side-link small { overflow-wrap: anywhere; }
+}
+
+@media (max-width: 760px) {
+  .app-top { padding: 0 14px; }
+  .menu-btn { min-height: 40px; padding: 8px 12px; }
+  .app-content {
+    width: min(1040px, calc(100% - 28px));
+    padding-top: 22px;
+    padding-bottom: 56px;
+  }
+  .page-head h1 { font-size: clamp(1.75rem, 8vw, 2.3rem); }
+  .metrics dd { font-size: 1.7rem; }
+  .card { padding: 18px 16px 14px; }
+  .card-name h3 { font-size: 1.25rem; }
+  .diagram-scroll .flow-figure { display: none; }
+  .flow-list { display: grid; }
+  .diagram-scroll { padding: 12px; }
+  .diagram-scroll .mermaid svg {
+    width: 760px !important;
+    max-width: none !important;
+    height: auto !important;
+  }
+  .pre { font-size: 0.78rem; padding: 14px; }
+  .doc h2 { font-size: 1.28rem; }
+
+  .people thead, .cmd-table thead { display: none; }
+  .people, .people tbody, .people tr, .people td,
+  .cmd-table, .cmd-table tbody, .cmd-table tr, .cmd-table td {
+    display: block;
+    width: auto;
+  }
+  .people, .cmd-table { border-radius: 14px; }
+  .people tr, .cmd-table tr {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--line);
+  }
+  .people tr:last-child, .cmd-table tr:last-child { border-bottom: 0; }
+  .people td, .cmd-table td {
+    border: 0;
+    padding: 3px 0;
+    white-space: normal;
+  }
+  .people td[data-label]::before,
+  .cmd-table td:nth-child(1)::before,
+  .cmd-table td:nth-child(2)::before {
+    display: block;
+    margin-bottom: 2px;
+    color: var(--ink-soft);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .people td[data-label]::before { content: attr(data-label); }
+  .cmd-table td:nth-child(1)::before { content: "Command"; }
+  .cmd-table td:nth-child(2)::before { content: "What it does"; }
+  .cmd-table td:nth-child(3)::before { content: none; }
+  .cmd-table code {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+  .cmd-table td:last-child { width: auto; padding-top: 8px; }
+  .copy { min-height: 36px; }
 }
